@@ -7,7 +7,7 @@ import { measurementGuide } from '../config';
 const Container = styled.div`
   font-family: microgamma, avenir, sans;
   margin: 30px 0;
-  justifyContent: space-between;
+  justify-content: space-between;
   position: relative;
 `;
 
@@ -28,8 +28,19 @@ const Canvas = styled.div`
 
 export const App = () => {
   const createPath = (measurementGuideArray) => {
-    return measurementGuideArray.map(a => {
-      return <Route exact path={`/${a.api}`} render={() => <Api api={a.api} description={a.description} />} />
+    return measurementGuideArray.map((a, index) => {
+      const { api, description } = a[1]
+      
+      return (
+        <Route
+          key={index}
+          exact
+          path={`/${api}`}
+          render={() => (
+            <Api api={api} description={description} />
+          )}
+        />
+      )
     })
   }
   return (

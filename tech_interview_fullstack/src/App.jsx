@@ -1,19 +1,27 @@
 import React from 'react';
-import './App.css'
-import { ProfileForm } from './components/ProfileForm';
-import ProductDropdown from './components/ProductDropdown';
+import ProfileForm from './components/ProfileForm';
+import ProductDropdown from './components/ProductDropdown'; 
+import { Provider } from 'react-redux';
+import store from './store'; 
+import { GlobalStyle } from './global/globalStyle';
+import { Root, Card, ReadTheDocs } from './global/styledComponents'; 
 
-function App() {
-
+const App = () => {
   return (
-    <>
-      <ProfileForm />
-      <hr />
-      <ProductDropdown />
-      <br />
-      My recommended size for `PRODUCT_NAME` is:
-    </>
-  )
-}
+    <Provider store={store}>
+      <GlobalStyle />
+      <Root>
+        <h1>Garment Matching System</h1>
+        <Card>
+          <ProfileForm />
+          <ProductDropdown />
+        </Card>
+        <ReadTheDocs href="https://reactjs.org/docs/getting-started.html" target="_blank" rel="noopener noreferrer">
+          React Documentation
+        </ReadTheDocs>
+      </Root>
+    </Provider>
+  );
+};
 
-export default App
+export default App;
